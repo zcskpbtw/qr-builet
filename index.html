@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данные билета</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="card">
+        <h1>Данные билета</h1>
+
+        <label for="transportType">Вид транспорта</label>
+        <select id="transportType">
+            <option value="bus">Автобус</option>
+            <option value="trolleybus">Троллейбус</option>
+        </select>
+
+        <label for="routeNumber">Номер маршрута</label>
+        <input type="text" id="routeNumber" placeholder="Введите номер маршрута">
+
+        <label for="vehicleNumber">Номер ТС</label>
+        <input type="text" id="vehicleNumber" placeholder="Введите номер ТС">
+
+        <label for="ticketPrice">Стоимость платы за проезд</label>
+        <input type="text" id="ticketPrice" placeholder="Введите стоимость">
+
+        <button onclick="submitForm()">Продолжить</button>
+    </div>
+</body>
+</html>

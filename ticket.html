@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронный билет</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ticket.css">
+    <script defer src="script.js"></script>
+</head>
+<body onload="loadTicket()">
+    <div class="ticket-container">
+        <header>
+            <p>Уведомление об оплате</p>         
+        </header>
+        <main>
+            <img src="logo.png" alt="СБП" class="logo">
+            <p class="success-message">Ваш проезд успешно оплачен!</p>
+            <p class="transport"><span id="transportType"></span>: №<span id="routeNumber"></span></p>
+            <p class="price"><span id="ticketPrice"></span> <span class="currency">₽</span></p>
+            <p class="entry-time"><span id="entryDate"></span> <span id="entryTime"></span></p>
+            <p class="vehicle">Т/С: <span id="vehicleNumber"></span></p>
+            <p class="elapsed-time">С момента оплаты прошло:<br> 
+                <span id="elapsedTime"></span>
+             </p>
+            <div class="qr-code">
+                <img id="qrCode" src="" alt="QR-код">
+            </div>
+            <p class="ticket-info">Серия билета: <span id="ticketSeries"></span></p>
+            <p class="ticket-info">Номер билета: <span id="ticketNumber"></span></p>
+            <p class="instructions">Предъявите контролеру QR-код.<br>Чтобы сохранить реквизиты билета, нажмите кнопку «Скачать».</p>
+            <button class="download-btn" onclick="downloadTicket()">Скачать билет</button>
+        </main>
+    </div>
+</body>
+</html>

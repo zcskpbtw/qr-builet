@@ -1,0 +1,160 @@
+@font-face {
+    font-family: 'Circe_Regular';
+    src: url('fonts/Circe_Regular.woff') format('woff');
+}
+
+.ticket-container {
+    width: 100%;
+    margin: 0;
+    padding: 0px;
+    background: #fff9f9;
+    text-align: center;
+    font-family: 'Circe_Regular', sans-serif;
+    border-radius: 10px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+header {
+    height: 56px;
+    width: 100%;
+    background: #1D1346;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Размещаем элементы в колонку */
+    padding-top: 10px; /* Добавляем отступ сверху и снизу */
+    box-sizing: border-box;
+    font-weight: normal;
+    line-height: 24px;
+    gap: 10px; /* Добавляем расстояние между текстом и логотипом */
+}
+
+header p {
+    margin: 0;
+    font-size: 18px;
+
+}
+
+
+.logo {
+    width: 100px;
+    height: 50px;
+    margin-top: 20px; /* Можно увеличить, если нужно больше расстояния */
+}
+
+
+.success-message {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #1d1346;
+    margin-bottom: 35px;
+}
+
+.transport {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #1d1346;
+    margin-top: 20px;
+}
+
+.price {
+    font-size: 46px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #1d1346;
+}
+
+.currency {
+    font-size: 46px;
+    color: #1d1346;
+}
+
+.vehicle {
+    font-size: 16px;
+    color: #b5b5b5;
+    margin-top: 1px;
+    margin-bottom: 25px;
+}
+
+
+.entry-time,.elapsed-time {
+    font-size: 16px;
+    margin: 0;
+    color: #1d1346;
+    margin-top: 5px;
+}
+
+.qr-code img {
+    width: 296px;
+    height: 296px;
+    margin-top: 25px;
+    background: none;
+
+}
+
+.ticket-info {
+    font-size: 12px;
+    font-weight: normal; /* Обычный шрифт для надписи */
+    margin: 3px 0;
+    color: #1d1346;
+}
+
+.ticket-info span {
+    font-weight: bold; /* Жирный шрифт для значения */
+}
+
+.instructions {
+    font-size: 12px;
+    color: gray;
+    margin: 10px 0;
+    color: #1d1346;
+    margin-top: 1;
+}
+
+.elapsed-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравниваем текст по центру */
+    color: #1d1346;
+    margin-top: 20px;
+    margin: 0; /* Убираем отступы */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+#elapsedTime {
+    font-size: 32px;
+      font-weight: bold;
+      color: #1d1346;
+      margin: 0; /* Убираем отступы у текста */
+      padding: 0; /* Убираем внутренние отступы у текста */
+}
+
+.qr-message {
+    
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+    color: #1d1346;
+    font-weight: normal;
+    color: #1d1346;
+    margin-top: 20px;
+}
+
+.download-btn {
+    background: #78B72A;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+}
+
+.download-btn:hover {
+    background: #78B72A;
+}

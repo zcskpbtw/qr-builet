@@ -16,7 +16,7 @@
 }
 
 header {
-    height: 195px;
+    height: 450px;
     width: 100%;
     background: #1D1346;
     color: #f1f0e6;
@@ -25,7 +25,7 @@ header {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Размещаем элементы в колонку */
-    padding-top: 125px; /* Добавляем отступ сверху и снизу */
+    padding-top: 400px; /* Добавляем отступ сверху и снизу */
     box-sizing: border-box;
     font-weight: bold;
     line-height: 24px;

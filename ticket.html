@@ -28,9 +28,14 @@
             </div>
             <p class="ticket-info">Серия билета: <span id="ticketSeries"></span></p>
             <p class="ticket-info">Номер билета: <span id="ticketNumber"></span></p>
-            <p class="instructions">Предъявите контролеру QR-код.<br>Чтобы сохранить реквизиты билета, нажмите кнопку «Скачать».</p>
+            <p class="instructions">Предъявите контролеру QR-код.<br>Чтобы сохранить реквизиты билета,<br> нажмите кнопку «Скачать».</p>
             <button class="download-btn" onclick="downloadTicket()">Скачать билет</button>
         </main>
     </div>
+    <div id="downloadPanel" class="download-panel">
+    <p class="panel-text">Ваша поездка оплачена, пожалуйста, сохраните билет <br> в памяти телефона до конца поездки</p>
+    <button class="download-btn" onclick="confirmDownload()">Скачать билет</button>
+</div>
+<div id="overlay" class="overlay"></div>
 </body>
 </html>

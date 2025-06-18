@@ -7,7 +7,7 @@
     width: 100%;
     margin: 0;
     padding: 0px;
-    background: #fff9f9;
+    background: #f1f0e6;
     text-align: center;
     font-family: 'Circe_Regular', sans-serif;
     border-radius: 10px;
@@ -16,18 +16,18 @@
 }
 
 header {
-    height: 96px;
+    height: 195px;
     width: 100%;
     background: #1D1346;
-    color: white;
+    color: #f1f0e6;
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Размещаем элементы в колонку */
-    padding-top: 40px; /* Добавляем отступ сверху и снизу */
+    padding-top: 125px; /* Добавляем отступ сверху и снизу */
     box-sizing: border-box;
-    font-weight: normal;
+    font-weight: bold;
     line-height: 24px;
     gap: 10px; /* Добавляем расстояние между текстом и логотипом */
 }
@@ -40,17 +40,16 @@ header p {
 
 
 .logo {
-    width: 100px;
-    height: 50px;
-    margin-top: 20px; /* Можно увеличить, если нужно больше расстояния */
+    width: 150px;
+    height: 75px;
+    margin-top: 25px; /* Можно увеличить, если нужно больше расстояния */
 }
 
 
 .success-message {
     font-size: 18px;
-    margin-top: 20px;
+    margin: 40px;
     color: #1d1346;
-    margin-bottom: 35px;
 }
 
 .transport {
@@ -85,22 +84,22 @@ header p {
     font-size: 16px;
     margin: 0;
     color: #1d1346;
-    margin-top: 5px;
+    margin-top: 18px;
+    margin-bottom: 5px;
 }
 
 .qr-code img {
     width: 296px;
     height: 296px;
-    margin-top: 25px;
     background: none;
-
+    margin-top: 25px;
+    margin-bottom: 20px;
 }
 
 .ticket-info {
     font-size: 12px;
     font-weight: normal; /* Обычный шрифт для надписи */
-    margin: 3px 0;
-    color: #1d1346;
+    margin: 3px;
 }
 
 .ticket-info span {
@@ -133,15 +132,43 @@ header p {
       padding: 0; /* Убираем внутренние отступы у текста */
 }
 
-.qr-message {
-    
+.qr-message {  
     font-size: 14px;
     margin-top: 5px;
     text-align: center;
     color: #1d1346;
     font-weight: normal;
     color: #1d1346;
-    margin-top: 20px;
+}
+
+.panel-text {
+    font-size: 14px;
+    color: #1d1346;
+    margin: 0 20px 10px; /* Отступы вокруг текста */
+    line-height: 1.2;
+    font-family: 'Circe_Regular', sans-serif;
+    padding: 0 10px; /* Дополнительный внутренний отступ */
+    text-align: center; /* Центрируем текст */
+    word-wrap: break-word; /* Перенос слов при необходимости */
+}
+
+.download-panel {
+    position: fixed;
+    bottom: -150px; /* Изначально скрыто ниже экрана */
+    left: 0;
+    width: 100%;
+    background-color: #f1f0e6; /* Соответствует фону сайта */
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Лёгкая тень для эффекта */
+    transition: bottom 0.3s ease; /* Плавная анимация */
+    z-index: 2000; /* Над остальным контентом */
+    display: flex; /* Используем flex для вертикального расположения */
+    flex-direction: column; /* Элементы по вертикали */
+    align-items: center; /* Центрируем содержимое */
+    min-height: 80px; /* Минимальная высота для текста и кнопки */
+    max-height: 150px; /* Ограничиваем максимальную высоту */
+    overflow-y: auto; /* Прокрутка, если контент превышает max-height */
 }
 
 .download-btn {
@@ -152,9 +179,37 @@ header p {
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-    width: 100%;
+    width: 296px;
+    margin: 0;
 }
 
 .download-btn:hover {
     background: #78B72A;
+}
+
+.download-panel button {
+    margin: 10px auto 0; /* Отступ сверху от текста */
+    width: 296px; /* Сохраняем ширину кнопки */
+}
+
+.download-panel.visible {
+    border-radius: 7px;
+    bottom: 0; /* Показываем при активации */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Затемнение на 50% */
+    opacity: 0; /* Изначально невидимо */
+    z-index: 1500; /* Под плашкой, но над контентом */
+    transition: opacity 0.3s ease; /* Плавное появление/исчезновение */
+    pointer-events: none; /* Не блокирует клики на контент */
+}
+
+.overlay.visible {
+    opacity: 1; /* Показываем при активации */
 }

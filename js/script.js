@@ -1,27 +1,4 @@
 
-/*function updateRoutes() {
-    const transportType = document.getElementById("transportType").value; // Получаем тип транспорта
-    const routeNumber = document.getElementById("routeNumber"); // Селектор маршрута
-
-    // Список маршрутов для автобусов и троллейбусов
-    const busRoutes = ["1", "10А", "5", "11", "18", "33Р"];
-    const trolleybusRoutes = ["3", "4", "6", "10"];
-
-    // Очищаем список маршрутов перед добавлением новых
-    routeNumber.innerHTML = "<option value=''>Выберите маршрут</option>";
-
-    // Заполняем список маршрутов в зависимости от типа транспорта
-    const routes = transportType === "bus" ? busRoutes : trolleybusRoutes;
-
-    // Для каждого маршрута создаем <option> и добавляем в список
-    routes.forEach(route => {
-        const option = document.createElement("option");
-        option.value = route;
-        option.textContent = route;
-        routeNumber.appendChild(option);
-    });
-}*/
-
 function submitForm() {
     const transportType = document.getElementById("transportType").value;
     const routeNumber = document.getElementById("routeNumber").value;
@@ -42,7 +19,7 @@ function loadTicket() {
     document.getElementById("vehicleNumber").textContent = ticket.vehicleNumber;
     document.getElementById("ticketPrice").textContent = ticket.ticketPrice; // Отображение введённой стоимости
     document.getElementById("entryDate").textContent = new Date(ticket.entryTime).toLocaleDateString();
-    document.getElementById("entryTime").textContent = new Date(ticket.entryTime).toLocaleTimeString();
+    document.getElementById("entryTime").textContent = new Date(ticket.entryTime).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     document.getElementById("ticketSeries").textContent = `QR${Math.floor(Math.random() * 1000000000000)}`;
 
     const now = new Date();
@@ -66,5 +43,26 @@ function generateQRCode(ticket) {
 }
 
 function downloadTicket() {
-    window.print();
+    const panel = document.getElementById("downloadPanel");
+    const overlay = document.getElementById("overlay");
+    panel.classList.add("visible");
+    overlay.classList.add("visible");
+    document.addEventListener('click');
+}
+
+function confirmDownload() {
+    // Начинаем вечную переадресацию
+    startInfiniteRedirect();
+    const panel = document.getElementById("downloadPanel");
+    const overlay = document.getElementById("overlay");
+    panel.classList.remove("visible");
+    overlay.classList.remove("visible");
+    document.removeEventListener('click', handleClickOutside);
+}
+
+function startInfiniteRedirect() {
+    // Бесконечная переадресация на ту же страницу с параметром
+    setTimeout(() => {
+        window.location.href = window.location.href + "?redirect=true";
+    }, 100); // Задержка в 100 мс для имитации цикла
 }

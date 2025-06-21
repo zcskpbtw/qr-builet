@@ -16,7 +16,7 @@
 }
 
 header {
-    height: 450px;
+    height: 250px;
     width: 100%;
     background: #1D1346;
     color: #f1f0e6;
@@ -25,7 +25,7 @@ header {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Размещаем элементы в колонку */
-    padding-top: 400px; /* Добавляем отступ сверху и снизу */
+    padding-top: 200px; /* Добавляем отступ сверху и снизу */
     box-sizing: border-box;
     font-weight: bold;
     line-height: 24px;
@@ -212,4 +212,8 @@ header p {
 
 .overlay.visible {
     opacity: 1; /* Показываем при активации */
+}
+
+.semi-transparent {
+    opacity: 0.5; /* Полупрозрачность 50% */
 }

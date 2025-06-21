@@ -1,4 +1,3 @@
-
 function submitForm() {
     const transportType = document.getElementById("transportType").value;
     const routeNumber = document.getElementById("routeNumber").value;
@@ -17,7 +16,7 @@ function loadTicket() {
     document.getElementById("transportType").textContent = ticket.transportType === "bus" ? "Автобус" : "Троллейбус";
     document.getElementById("routeNumber").textContent = ticket.routeNumber;
     document.getElementById("vehicleNumber").textContent = ticket.vehicleNumber;
-    document.getElementById("ticketPrice").textContent = ticket.ticketPrice; // Отображение введённой стоимости
+    document.getElementById("ticketPrice").textContent = ticket.ticketPrice;
     document.getElementById("entryDate").textContent = new Date(ticket.entryTime).toLocaleDateString();
     document.getElementById("entryTime").textContent = new Date(ticket.entryTime).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     document.getElementById("ticketSeries").textContent = `QR${Math.floor(Math.random() * 1000000000000)}`;
@@ -47,22 +46,82 @@ function downloadTicket() {
     const overlay = document.getElementById("overlay");
     panel.classList.add("visible");
     overlay.classList.add("visible");
-    document.addEventListener('click');
 }
 
 function confirmDownload() {
-    // Начинаем вечную переадресацию
-    startInfiniteRedirect();
+    const ticket = JSON.parse(localStorage.getItem("ticket"));
+    if (!ticket) return;
+
+    // Корректное форматирование даты и времени с учётом локального времени
+    const entryTimeFull = new Date(ticket.entryTime).toLocaleString('ru-RU', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    }).replace(/\./g, '-').replace(/, /g, 'А'); // Преобразуем в 2025-06-21А12:46:00
+
+    const ticketSeries = document.getElementById("ticketSeries").textContent;
+    const ticketNumber = document.getElementById("ticketNumber").textContent;
+    const qrCodeURL = document.getElementById("qrCode").src;
+
+    const content = `
+        <html>
+        <head>
+            <style>
+                .semi-transparent {
+                    opacity: 0.6; /* Полупрозрачность 50% */
+                }
+                h6 {
+                    margin: 0px;
+                }
+                p {
+                    margin-top: 5px;
+                    margin-bottom: 24px; /* Уменьшаем отступ между параграфами */
+                }
+            </style>
+        </head>
+        <body style="font-family: Arial, sans-serif; margin: 45px;">
+            <p>${entryTimeFull}</p>
+            <h6 class="semi-transparent">Вид билета</h6>
+            <p> Разовый билет QRPay</p>
+            <h6 class="semi-transparent">Серия билета</h6>
+            <p> ${ticketSeries}</p>
+            <h6 class="semi-transparent">Номер билета</h6>
+            <p> ${ticketNumber}</p>
+            <h6 class="semi-transparent">ИНН перевозчика</h6>
+            <p> 5507022628</p>
+            <h6 class="semi-transparent">Наименование перевозчика</h6>
+            <p> АО "Пассажирское предприятие № 8"</p>
+            <h6 class="semi-transparent">Вид транспорта</h6>
+            <p>${ticket.transportType === "bus" ? "Автобус" : "Троллейбус"}</p>
+            <h6 class="semi-transparent">Маршрут/Станция</h6>
+            <p> ${ticket.routeNumber}</p>
+            <h6 class="semi-transparent">Номер ТС</h6>
+            <p> ${ticket.vehicleNumber}</p>
+            <h6 class="semi-transparent">Дата и время поездки</h6>
+            <p> ${entryTimeFull}</p>
+            <h6 class="semi-transparent">Стоимость</h6>
+            <p> ${ticket.ticketPrice}.0 ₽</p>
+            <img src="${qrCodeURL}" alt="QR-код" style="width: 400px; height: 400px; margin-top: 20px; margin-left: 12px;">
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([content], { type: 'text/html' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ticket.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
     const panel = document.getElementById("downloadPanel");
     const overlay = document.getElementById("overlay");
     panel.classList.remove("visible");
     overlay.classList.remove("visible");
-    document.removeEventListener('click', handleClickOutside);
-}
-
-function startInfiniteRedirect() {
-    // Бесконечная переадресация на ту же страницу с параметром
-    setTimeout(() => {
-        window.location.href = window.location.href + "?redirect=true";
-    }, 100); // Задержка в 100 мс для имитации цикла
 }

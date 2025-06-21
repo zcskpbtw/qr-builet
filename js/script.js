@@ -110,15 +110,11 @@ function confirmDownload() {
         </html>
     `;
 
-    const blob = new Blob([content], { type: 'text/html' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'ticket.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
+    const newWindow = window.open('', '_blank');
+    if (newWindow) {
+        newWindow.document.write(content);
+        newWindow.document.close();
+    }
 
     const panel = document.getElementById("downloadPanel");
     const overlay = document.getElementById("overlay");
